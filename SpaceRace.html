@@ -1,36 +1,36 @@
 <head>
   <title>SpaceRace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SpaceRace: The audience participation boardgame">
+  <meta name="author" content="leoj3n, shart, presh">
 </head>
 
 <body>
   <div id="outer">
-    {{> SpaceRace}}
+      {{> SpaceRace}}
   </div>
 </body>
 
 <template name="SpaceRace">
-  <div class="SpaceRace">
-    {{#each options}}
-      {{> option}}
-    {{/each}}
+  <div class="SpaceRace container">
+      {{#each options}}
+        {{> option}}
+      {{/each}}
+      {{#if selected_name}}
+        <div class="row-fluid">
+          <div class="span12">
+            <input type="button" class="inc btn" value="Add value" />
+          </div>
+        </div>
+      {{/if}}
+    </div>
   </div>
-
-  {{#if selected_name}}
-  <div class="details">
-    <div class="name">{{selected_name}}</div>
-    <input type="button" class="inc" value="Add value" />
-  </div>
-  {{/if}}
-
-  {{#unless selected_name}}
-  <div class="none">Click a option to select</div>
-  {{/unless}}
-</template>
+</template><!-- :SpaceRace -->
 
 <template name="option">
-  <div class="option {{selected}}">
-    <span class="name">{{name}}</span>
-    <span class="score">{{score}}</span>
+  <div class="row-fluid option {{selected}}">
+    <span class="span8 name">{{name}}</span>
+    <span class="span4 score">{{score}}</span>
   </div>
-</template>
+</template><!-- :option -->
 

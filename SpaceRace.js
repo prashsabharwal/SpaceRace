@@ -12,7 +12,7 @@ if( Meteor.isClient ) {
   //
 
   Meteor.startup( function() {
-    console.log( "Blast off!" );
+    console.log( "Blast off! (client)" );
   });
 
   // 
@@ -69,9 +69,15 @@ if( Meteor.isServer ) {
     
     // initialize options if none exist
     if( Options.find().count() === 0 ) {
-      var names = ["Option 1",
-                   "Option 2",
-                   "Option 3"];
+      // mystery
+      var names = ["Swap Places",
+                   "Lose an Asteroid",
+                   "Lose Money",
+                   "Skip Turn",
+                   "Steal Asteroid"]; // because...
+
+      /*var control = ["Mining resources run out!",
+                   "You found gold!"]; // therefore you...*/
 
       for (var i = 0; i < names.length; i++)
         Options.insert( { name: names[i], score: i } );
