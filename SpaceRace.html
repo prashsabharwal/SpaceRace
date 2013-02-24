@@ -1,0 +1,36 @@
+<head>
+  <title>SpaceRace</title>
+</head>
+
+<body>
+  <div id="outer">
+    {{> SpaceRace}}
+  </div>
+</body>
+
+<template name="SpaceRace">
+  <div class="SpaceRace">
+    {{#each options}}
+      {{> option}}
+    {{/each}}
+  </div>
+
+  {{#if selected_name}}
+  <div class="details">
+    <div class="name">{{selected_name}}</div>
+    <input type="button" class="inc" value="Add value" />
+  </div>
+  {{/if}}
+
+  {{#unless selected_name}}
+  <div class="none">Click a option to select</div>
+  {{/unless}}
+</template>
+
+<template name="option">
+  <div class="option {{selected}}">
+    <span class="name">{{name}}</span>
+    <span class="score">{{score}}</span>
+  </div>
+</template>
+

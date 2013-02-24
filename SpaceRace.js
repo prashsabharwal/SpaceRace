@@ -1,0 +1,83 @@
+// Create a client + MongoDB collection
+
+Options = new Meteor.Collection( "options" );
+
+//
+// CLIENT
+//
+
+if( Meteor.isClient ) {
+  //
+  // STARTUP
+  //
+
+  Meteor.startup( function() {
+    console.log( "Blast off!" );
+  });
+
+  // 
+  // TEMPLATE STUFF
+  // 
+
+  // "find" the options, sort by score, then by name...
+  // @return Array (of options)
+
+  Template.SpaceRace.options = function () {
+    return Options.find( {}, { sort: { score: -1, name: 1 } } );
+  };
+
+  // return option name of selected option (using session.get)
+  // @return String
+
+  Template.SpaceRace.selected_name = function () {
+    var option = Options.findOne( Session.get( "selected_option" ) );
+    return option && option.name;
+  };
+
+  // return "selected" if option.id is equal to selected_option in session or "" if not
+  // @return Boolean
+
+  Template.option.selected = function () {
+    return Session.equals( "selected_option", this._id ) ? "selected" : '';
+  };
+
+  // 
+  // EVENT STUFF
+  // 
+
+  // SpaceRace events
+  Template.SpaceRace.events({
+    'click input.inc': function () {
+      Options.update( Session.get( "selected_option" ), { $inc: { score: 5 } } );
+    }
+  });
+
+  // set selected option on click of option name
+  Template.option.events({
+    'click': function () {
+      Session.set( "selected_option", this._id );
+    }
+  });
+}
+
+//
+// SERVER
+//
+
+if( Meteor.isServer ) {
+  Meteor.startup( function() {
+    
+    // initialize options if none exist
+    if( Options.find().count() === 0 ) {
+      var names = ["Option 1",
+                   "Option 2",
+                   "Option 3"];
+
+      for (var i = 0; i < names.length; i++)
+        Options.insert( { name: names[i], score: i } );
+    }
+
+  });
+}
+
+// random snippit of code...: Math.floor(Random.fraction()*10)*5
