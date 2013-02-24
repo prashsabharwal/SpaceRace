@@ -34,4 +34,4 @@ The game ends at 15 minutes of gameplay. At the end, each player adds the value 
 
 ![Whiteboard right](Photo on 2-23-13 at 11.21 PM.jpg "Whiteboard right")
 
-![Whiteboard master controls](Photo on 2-24-13 at 3.20 PM.jpg "Whiteboard master controls")
+![Whiteboard master controls](Photo on 2-24-13 at 3.20 AM.jpg "Whiteboard master controls")
